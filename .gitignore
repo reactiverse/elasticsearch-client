@@ -1,0 +1,8 @@
+*.ipr
+*.iws
+*.iml
+.gradle/
+.idea/
+build/
+out/
+**/src/main/generated
