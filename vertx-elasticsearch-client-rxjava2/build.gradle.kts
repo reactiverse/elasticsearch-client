@@ -16,6 +16,8 @@
 
 plugins {
   `java-library`
+  `maven-publish`
+  signing
 }
 
 val vertxVersion = extra["vertxVersion"]
@@ -38,7 +40,6 @@ sourceSets {
 }
 
 tasks {
-
   getByName<JavaCompile>("compileJava") {
     options.annotationProcessorGeneratedSourcesDirectory = File("$projectDir/src/main/generated")
   }
@@ -46,4 +47,74 @@ tasks {
   getByName<Delete>("clean") {
     delete.add("src/main/generated")
   }
+
+  getByName<Jar>("jar") {
+    exclude("io/vertx/elasticsearch/client/*.class")
+  }
+
+  create<Jar>("sourcesJar") {
+    from(sourceSets.main.get().allJava)
+    classifier = "sources"
+  }
+
+  create<Jar>("javadocJar") {
+    from(javadoc)
+    classifier = "javadoc"
+  }
+
+  javadoc {
+    if (JavaVersion.current().isJava9Compatible) {
+      (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+    }
+  }
+
+  withType<Sign> {
+    onlyIf { project.extra["isReleaseVersion"] as Boolean }
+  }
+}
+
+publishing {
+  publications {
+    create<MavenPublication>("mavenJava") {
+      from(components["java"])
+      artifact(tasks["sourcesJar"])
+      artifact(tasks["javadocJar"])
+      pom {
+        name.set(project.name)
+        description.set("Vert.x Elasticsearch client with RxJava2 bindings")
+        url.set("https://github.com/jponge/vertx-elasticsearch-client")
+        licenses {
+          license {
+            name.set("The Apache License, Version 2.0")
+            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+          }
+        }
+        developers {
+          developer {
+            id.set("jponge")
+            name.set("Julien Ponge")
+            email.set("julien.ponge@gmail.com")
+          }
+        }
+        scm {
+          connection.set("scm:git:git@github.com:jponge/vertx-elasticsearch-client.git")
+          developerConnection.set("scm:git:git@github.com:jponge/vertx-elasticsearch-client.git")
+          url.set("https://github.com/jponge/vertx-elasticsearch-client")
+        }
+      }
+    }
+  }
+  repositories {
+    // To locally check out the poms
+    maven {
+      val releasesRepoUrl = uri("$buildDir/repos/releases")
+      val snapshotsRepoUrl = uri("$buildDir/repos/snapshots")
+      name = "buildDir"
+      url = if (project.extra["isReleaseVersion"] as Boolean) snapshotsRepoUrl else releasesRepoUrl
+    }
+  }
+}
+
+signing {
+  sign(publishing.publications["mavenJava"])
 }

@@ -16,17 +16,22 @@
 
 plugins {
   `java-library`
+  `maven-publish`
+  signing
 }
 
 allprojects {
 
   apply(plugin = "java")
+  apply(plugin = "maven-publish")
+  apply(plugin = "signing")
 
   version = "0.0-SNAPSHOT"
   group = "foo.bar"
 
   extra["vertxVersion"] = "3.6.2"
   extra["elasticClientVersion"] = "6.5.2"
+  extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
   repositories {
     mavenCentral()
@@ -59,7 +64,6 @@ sourceSets {
 }
 
 tasks {
-
   create<Copy>("copy-shims") {
     from(getByPath(":shim-generator:elastic-process"))
     into("src/main/generated")
@@ -70,4 +74,70 @@ tasks {
   getByName<Delete>("clean") {
     delete.add("src/main/generated")
   }
+
+  create<Jar>("sourcesJar") {
+    from(sourceSets.main.get().allJava)
+    classifier = "sources"
+  }
+
+  create<Jar>("javadocJar") {
+    from(javadoc)
+    classifier = "javadoc"
+  }
+
+  javadoc {
+    if (JavaVersion.current().isJava9Compatible) {
+      (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+    }
+  }
+
+  withType<Sign> {
+    onlyIf { project.extra["isReleaseVersion"] as Boolean }
+  }
+}
+
+publishing {
+  publications {
+    create<MavenPublication>("mavenJava") {
+      from(components["java"])
+      artifact(tasks["sourcesJar"])
+      artifact(tasks["javadocJar"])
+      pom {
+        name.set(project.name)
+        description.set("Vert.x Elasticsearch client")
+        url.set("https://github.com/jponge/vertx-elasticsearch-client")
+        licenses {
+          license {
+            name.set("The Apache License, Version 2.0")
+            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+          }
+        }
+        developers {
+          developer {
+            id.set("jponge")
+            name.set("Julien Ponge")
+            email.set("julien.ponge@gmail.com")
+          }
+        }
+        scm {
+          connection.set("scm:git:git@github.com:jponge/vertx-elasticsearch-client.git")
+          developerConnection.set("scm:git:git@github.com:jponge/vertx-elasticsearch-client.git")
+          url.set("https://github.com/jponge/vertx-elasticsearch-client")
+        }
+      }
+    }
+  }
+  repositories {
+    // To locally check out the poms
+    maven {
+      val releasesRepoUrl = uri("$buildDir/repos/releases")
+      val snapshotsRepoUrl = uri("$buildDir/repos/snapshots")
+      name = "buildDir"
+      url = if (project.extra["isReleaseVersion"] as Boolean) snapshotsRepoUrl else releasesRepoUrl
+    }
+  }
+}
+
+signing {
+  sign(publishing.publications["mavenJava"])
 }
