@@ -81,8 +81,8 @@ publishing {
       artifact(tasks["javadocJar"])
       pom {
         name.set(project.name)
-        description.set("Vert.x Elasticsearch client with RxJava2 bindings")
-        url.set("https://github.com/jponge/vertx-elasticsearch-client")
+        description.set("Reactiverse Elasticsearch client :: RxJava2 bindings")
+        url.set("https://github.com/reactiverse/elasticsearch-client")
         licenses {
           license {
             name.set("The Apache License, Version 2.0")
