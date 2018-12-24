@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-@ModuleGen(groupPackage = "io.vertx.elasticsearch.client", name = "client")
-package io.vertx.elasticsearch.client;
+@ModuleGen(groupPackage = "io.reactiverse.elasticsearch.client", name = "client")
+package io.reactiverse.elasticsearch.client;
 
 import io.vertx.codegen.annotations.ModuleGen;

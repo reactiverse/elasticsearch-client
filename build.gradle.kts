@@ -27,7 +27,7 @@ allprojects {
   apply(plugin = "signing")
 
   version = "0.0-SNAPSHOT"
-  group = "foo.bar"
+  group = "io.reactiverse"
 
   extra["vertxVersion"] = "3.6.2"
   extra["elasticClientVersion"] = "6.5.2"

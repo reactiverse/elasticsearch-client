@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-rootProject.name = "vertx-elasticsearch-client"
+rootProject.name = "elasticsearch-client"
 
-include("shim-generator", "integration-tests", "vertx-elasticsearch-client-rxjava2")
+include("shim-generator", "integration-tests", "elasticsearch-client-rxjava2")

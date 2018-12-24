@@ -12,10 +12,10 @@ The generated shims ensure that asynchronous event processing respect the Vert.x
 
 The following modules can be used:
 
-* `vertx-elasticsearch-client`: a classic Vert.x API based on callbacks
-* `vertx-elasticsearch-client-rxjava2`: a RxJava 2 API of the client
+* `elasticsearch-client`: a classic Vert.x API based on callbacks
+* `elasticsearch-client-rxjava2`: a RxJava 2 API of the client
 
-_group ids and versions have yet to be defined_
+The Maven `groupId` is `io.reactiverse`. 
 
 ## Sample usage
 

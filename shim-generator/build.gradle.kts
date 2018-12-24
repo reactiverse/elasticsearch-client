@@ -41,7 +41,7 @@ tasks {
     args = listOf(
       "$elasticSourcesDir/org/elasticsearch/client/RestHighLevelClient.java",
       elasticShimsDir,
-      "io.vertx.elasticsearch.client"
+      "io.reactiverse.elasticsearch.client"
     )
     description = "Generate the shims from the ElasticSearch source code"
     group = "build"

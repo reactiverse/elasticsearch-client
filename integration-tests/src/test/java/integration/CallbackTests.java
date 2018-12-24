@@ -16,8 +16,8 @@
 
 package integration;
 
+import io.reactiverse.elasticsearch.client.RestHighLevelClient;
 import io.vertx.core.Vertx;
-import io.vertx.elasticsearch.client.RestHighLevelClient;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
 import org.apache.http.HttpHost;

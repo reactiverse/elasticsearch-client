@@ -21,7 +21,7 @@ plugins {
 val vertxVersion = extra["vertxVersion"]
 
 dependencies {
-  testImplementation(project(":vertx-elasticsearch-client-rxjava2"))
+  testImplementation(project(":elasticsearch-client-rxjava2"))
 
   testImplementation("io.vertx:vertx-junit5:${vertxVersion}")
 
