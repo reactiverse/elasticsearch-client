@@ -109,8 +109,20 @@ publishing {
     maven {
       val releasesRepoUrl = uri("$buildDir/repos/releases")
       val snapshotsRepoUrl = uri("$buildDir/repos/snapshots")
-      name = "buildDir"
-      url = if (project.extra["isReleaseVersion"] as Boolean) snapshotsRepoUrl else releasesRepoUrl
+      name = "BuildDir"
+      url = if (project.extra["isReleaseVersion"] as Boolean) releasesRepoUrl else snapshotsRepoUrl
+    }
+    maven {
+      val releasesRepoUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+      val snapshotsRepoUrl = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+      name = "SonatypeOSS"
+      url = if (project.extra["isReleaseVersion"] as Boolean) releasesRepoUrl else snapshotsRepoUrl
+      credentials {
+        val ossrhUsername: String by project
+        val ossrhPassword: String by project
+        username = ossrhUsername
+        password = ossrhPassword
+      }
     }
   }
 }
