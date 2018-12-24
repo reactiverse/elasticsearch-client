@@ -120,9 +120,9 @@ publishing {
           }
         }
         scm {
-          connection.set("scm:git:git@github.com:jponge/vertx-elasticsearch-client.git")
-          developerConnection.set("scm:git:git@github.com:jponge/vertx-elasticsearch-client.git")
-          url.set("https://github.com/jponge/vertx-elasticsearch-client")
+          connection.set("scm:git:git@github.com:reactiverse/elasticsearch-client.git")
+          developerConnection.set("scm:git:git@github.com:reactiverse/elasticsearch-client.git")
+          url.set("https://github.com/reactiverse/elasticsearch-client")
         }
       }
     }
