@@ -1,5 +1,7 @@
 # An Elasticsearch client for Eclipse Vert.x
 
+[![Build Status](https://travis-ci.org/reactiverse/elasticsearch-client.svg?branch=master)](https://travis-ci.org/reactiverse/elasticsearch-client)
+
 This client exposes the [Elasticsearch Java High Level REST Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-high.html) for [Eclipse Vert.x](https://vertx.io/) applications.
 
 ## Overview
