@@ -33,6 +33,14 @@ allprojects {
   extra["elasticClientVersion"] = "6.5.2"
   extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
+  if (!project.hasProperty("ossrhUsername")) {
+    extra["ossrhUsername"] = "foo"
+  }
+
+  if (!project.hasProperty("ossrhPassword")) {
+    extra["ossrhPassword"] = "bar"
+  }
+
   repositories {
     mavenCentral()
     maven {

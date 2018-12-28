@@ -9,10 +9,10 @@ jobs:
   include:
   - stage: test
     name: Build on OpenJDK 8
-    script: ./gradlew --no-daemon build -PossrhUsername=foo -PossrhPassword=bar
+    script: ./gradlew --no-daemon build
     jdk: openjdk8
   - name: Build on OpenJDK 11
-    script: ./gradlew --no-daemon build -PossrhUsername=foo -PossrhPassword=bar
+    script: ./gradlew --no-daemon build
     jdk: openjdk11
   - stage: deploy
     name: Deploy snapshots to Sonatype OSS

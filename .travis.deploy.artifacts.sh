@@ -6,7 +6,7 @@ then
   exit 0
 fi
 
-PROJECT_VERSION=$(./gradlew properties -PossrhUsername=foo -PossrhPassword=bar -q | grep "version:" | awk '{print $2}')
+PROJECT_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
 
 if [[ "$PROJECT_VERSION" =~ .*SNAPSHOT ]] && [[ "${TRAVIS_BRANCH}" =~ ^master$|^[0-9]+\.[0-9]+$ ]] && [[ "${TRAVIS_PULL_REQUEST}" = "false" ]];
 then
