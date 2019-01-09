@@ -18,6 +18,7 @@ plugins {
   `java-library`
   `maven-publish`
   signing
+  id("com.github.ben-manes.versions") version "0.20.0"
 }
 
 allprojects {
@@ -30,7 +31,7 @@ allprojects {
   group = "io.reactiverse"
 
   extra["vertxVersion"] = "3.6.2"
-  extra["elasticClientVersion"] = "6.5.2"
+  extra["elasticClientVersion"] = "6.5.4"
   extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
   if (!project.hasProperty("ossrhUsername")) {
@@ -160,4 +161,9 @@ publishing {
 
 signing {
   sign(publishing.publications["mavenJava"])
+}
+
+tasks.wrapper {
+  gradleVersion = "5.1"
+  distributionType = Wrapper.DistributionType.ALL
 }

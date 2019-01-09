@@ -23,7 +23,7 @@ val elasticClientVersion = extra["elasticClientVersion"]
 
 dependencies {
   implementation("ch.qos.logback:logback-classic:1.2.3")
-  implementation("com.github.javaparser:javaparser-core:3.7.0")
+  implementation("com.github.javaparser:javaparser-core:3.9.1")
   elastic("org.elasticsearch.client:elasticsearch-rest-high-level-client:${elasticClientVersion}:sources")
 }
 

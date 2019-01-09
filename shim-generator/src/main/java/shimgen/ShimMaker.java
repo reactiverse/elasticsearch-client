@@ -102,7 +102,7 @@ class ShimMaker extends VoidVisitorAdapter<Void> {
 
       BlockStmt createBlock = new BlockStmt();
       shimInterface
-        .addMethod("create", Modifier.STATIC)
+        .addMethod("create", Modifier.Keyword.STATIC)
         .addSingleMemberAnnotation("GenIgnore", "GenIgnore.PERMITTED_TYPE")
         .setType(shimInterface.getNameAsString())
         .setParameters(parameters)
