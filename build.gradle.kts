@@ -27,7 +27,7 @@ allprojects {
   apply(plugin = "maven-publish")
   apply(plugin = "signing")
 
-  version = "0.0-ec6.5.4"
+  version = "0.1-SNAPSHOT"
   group = "io.reactiverse"
 
   extra["vertxVersion"] = "3.6.2"
