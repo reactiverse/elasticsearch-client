@@ -26,11 +26,11 @@ dependencies {
   testImplementation("io.vertx:vertx-junit5:${vertxVersion}")
 
   testImplementation("org.assertj:assertj-core:3.11.1")
-  testImplementation("org.testcontainers:elasticsearch:1.10.6")
-  testImplementation("org.testcontainers:junit-jupiter:1.10.6")
+  testImplementation("org.testcontainers:elasticsearch:1.11.1")
+  testImplementation("org.testcontainers:junit-jupiter:1.11.1")
 
-  testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.2")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.3.2")
+  testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.1")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.4.1")
 }
 
 tasks.test {

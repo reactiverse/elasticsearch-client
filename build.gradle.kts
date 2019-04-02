@@ -30,8 +30,8 @@ allprojects {
   version = "0.2-SNAPSHOT"
   group = "io.reactiverse"
 
-  extra["vertxVersion"] = "3.6.3"
-  extra["elasticClientVersion"] = "6.6.0"
+  extra["vertxVersion"] = "3.7.0"
+  extra["elasticClientVersion"] = "6.7.0"
   extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
   if (!project.hasProperty("ossrhUsername")) {
@@ -164,6 +164,6 @@ signing {
 }
 
 tasks.wrapper {
-  gradleVersion = "5.2.1"
+  gradleVersion = "5.3.1"
   distributionType = Wrapper.DistributionType.ALL
 }
