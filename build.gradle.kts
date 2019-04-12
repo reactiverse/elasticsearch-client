@@ -27,11 +27,11 @@ allprojects {
   apply(plugin = "maven-publish")
   apply(plugin = "signing")
 
-  version = "0.3-SNAPSHOT"
+  version = "0.3-ec7.0.0"
   group = "io.reactiverse"
 
   extra["vertxVersion"] = "3.7.0"
-  extra["elasticClientVersion"] = "6.7.0"
+  extra["elasticClientVersion"] = "7.0.0"
   extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
   if (!project.hasProperty("ossrhUsername")) {
