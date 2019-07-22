@@ -30,8 +30,8 @@ allprojects {
   version = "0.5-SNAPSHOT"
   group = "io.reactiverse"
 
-  extra["vertxVersion"] = "3.7.1"
-  extra["elasticClientVersion"] = "7.1.1"
+  extra["vertxVersion"] = "3.8.0"
+  extra["elasticClientVersion"] = "7.2.0"
   extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
   if (!project.hasProperty("ossrhUsername")) {
