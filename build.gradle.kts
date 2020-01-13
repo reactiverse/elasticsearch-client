@@ -164,6 +164,6 @@ signing {
 }
 
 tasks.wrapper {
-  gradleVersion = "6.0"
+  gradleVersion = "6.0.1"
   distributionType = Wrapper.DistributionType.ALL
 }
