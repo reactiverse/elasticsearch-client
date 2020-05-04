@@ -61,7 +61,7 @@ class ShimMaker extends VoidVisitorAdapter<Void> {
 
   @Override
   public void visit(ClassOrInterfaceDeclaration n, Void arg) {
-    if (n.getNameAsString().equals("RestHighLevelClient") && n.getNameAsString().endsWith("Client")) {
+    if (n.getNameAsString().equals("RestHighLevelClient")) {
       super.visit(n, arg);
       return;
     }

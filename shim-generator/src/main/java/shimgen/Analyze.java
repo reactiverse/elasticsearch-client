@@ -37,6 +37,7 @@ public class Analyze {
     {
       add("RestClient");
       add("MigrationClient");
+      add("IndicesClient");
     }
   };
 
