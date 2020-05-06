@@ -187,7 +187,6 @@ class ShimMaker extends VoidVisitorAdapter<Void> {
 
     shimInterface
       .addMethod(n.getNameAsString())
-      .setPublic(true)
       .setType("void")
       .setParameters(parameters)
       .removeBody()
