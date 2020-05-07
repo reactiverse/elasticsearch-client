@@ -30,7 +30,7 @@ allprojects {
   version = "0.8.3-SNAPSHOT"
   group = "io.reactiverse"
 
-  extra["vertxVersion"] = "3.9.0"
+  extra["vertxVersion"] = "3.9.1-SNAPSHOT"
   extra["elasticClientVersion"] = "7.6.2"
   extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 

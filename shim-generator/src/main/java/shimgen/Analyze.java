@@ -37,7 +37,6 @@ public class Analyze {
     {
       add("RestClient");
       add("MigrationClient");
-      add("IndicesClient"); // TODO: remove when codegen bug will have been fixed
     }
   };
 
