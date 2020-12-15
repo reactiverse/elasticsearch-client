@@ -25,9 +25,9 @@ dependencies {
 
   testImplementation("io.vertx:vertx-junit5:${vertxVersion}")
 
-  testImplementation("org.assertj:assertj-core:3.17.2")
-  testImplementation("org.testcontainers:elasticsearch:1.15.0-rc2")
-  testImplementation("org.testcontainers:junit-jupiter:1.15.0-rc2")
+  testImplementation("org.assertj:assertj-core:3.18.1")
+  testImplementation("org.testcontainers:elasticsearch:1.15.1")
+  testImplementation("org.testcontainers:junit-jupiter:1.15.1")
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
