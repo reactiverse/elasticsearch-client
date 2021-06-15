@@ -42,7 +42,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RxJava2Tests {
 
   @Container
-  private ElasticsearchContainer container = new ElasticsearchContainer();
+  private ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.1");
 
   private RestHighLevelClient client;
 

@@ -24,13 +24,14 @@ dependencies {
   testImplementation(project(":elasticsearch-client-rxjava2"))
 
   testImplementation("io.vertx:vertx-junit5:${vertxVersion}")
+  testImplementation("io.vertx:vertx-junit5-rx-java2:${vertxVersion}")
 
-  testImplementation("org.assertj:assertj-core:3.18.1")
-  testImplementation("org.testcontainers:elasticsearch:1.15.1")
-  testImplementation("org.testcontainers:junit-jupiter:1.15.1")
+  testImplementation("org.assertj:assertj-core:3.19.0")
+  testImplementation("org.testcontainers:elasticsearch:1.15.3")
+  testImplementation("org.testcontainers:junit-jupiter:1.15.3")
 
-  testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+  testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
 }
 
 tasks.test {
