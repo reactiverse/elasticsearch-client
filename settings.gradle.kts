@@ -16,4 +16,10 @@
 
 rootProject.name = "elasticsearch-client"
 
-include("shim-generator", "integration-tests", "elasticsearch-client-rxjava2")
+include(
+  "shim-generator",
+  "integration-tests",
+  "elasticsearch-client-rxjava2",
+  "elasticsearch-client-rxjava3",
+  "elasticsearch-client-mutiny"
+)

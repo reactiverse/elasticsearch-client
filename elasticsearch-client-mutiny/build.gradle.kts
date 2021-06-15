@@ -18,71 +18,38 @@ plugins {
   `java-library`
   `maven-publish`
   signing
-  id("com.github.ben-manes.versions") version "0.39.0"
-}
-
-allprojects {
-
-  apply(plugin = "java")
-  apply(plugin = "maven-publish")
-  apply(plugin = "signing")
-
-  version = "0.9.0-SNAPSHOT"
-  group = "io.reactiverse"
-
-  extra["vertxVersion"] = "4.1.0"
-  extra["elasticClientVersion"] = "7.10.1"
-  extra["mutinyBindingsVersion"] = "2.6.0"
-  extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
-
-  if (!project.hasProperty("ossrhUsername")) {
-    extra["ossrhUsername"] = "foo"
-  }
-
-  if (!project.hasProperty("ossrhPassword")) {
-    extra["ossrhPassword"] = "bar"
-  }
-
-  repositories {
-    mavenCentral()
-    maven {
-      url = uri("https://oss.sonatype.org/content/repositories/snapshots")
-    }
-  }
-
-  java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-  }
 }
 
 val vertxVersion = extra["vertxVersion"]
-val elasticClientVersion = extra["elasticClientVersion"]
+val mutinyBindingsVersion = extra["mutinyBindingsVersion"]
 
 dependencies {
-  api("io.vertx:vertx-core:${vertxVersion}")
-  api("org.elasticsearch.client:elasticsearch-rest-high-level-client:${elasticClientVersion}")
+  api(rootProject)
+  api("io.smallrye.reactive:smallrye-mutiny-vertx-core:${mutinyBindingsVersion}")
   compileOnly("io.vertx:vertx-codegen:${vertxVersion}")
+  annotationProcessor("io.smallrye.reactive:vertx-mutiny-generator:${mutinyBindingsVersion}")
+  annotationProcessor("io.vertx:vertx-codegen:${vertxVersion}:processor")
 }
 
 sourceSets {
   main {
     java {
-      setSrcDirs(listOf("src/main/java", "src/main/generated"))
+      setSrcDirs(listOf("../src/main/generated", "src/main/generated"))
     }
   }
 }
 
 tasks {
-  create<Copy>("copy-shims") {
-    from(getByPath(":shim-generator:elastic-process"))
-    into("src/main/generated")
+  getByName<JavaCompile>("compileJava") {
+    options.annotationProcessorGeneratedSourcesDirectory = File("$projectDir/src/main/generated")
   }
-
-  getByName("compileJava").dependsOn("copy-shims")
 
   getByName<Delete>("clean") {
     delete.add("src/main/generated")
+  }
+
+  getByName<Jar>("jar") {
+    exclude("io/vertx/elasticsearch/client/*.class")
   }
 
   create<Jar>("sourcesJar") {
@@ -114,7 +81,7 @@ publishing {
       artifact(tasks["javadocJar"])
       pom {
         name.set(project.name)
-        description.set("Reactiverse Elasticsearch client")
+        description.set("Reactiverse Elasticsearch client :: Mutiny bindings")
         url.set("https://github.com/reactiverse/elasticsearch-client")
         licenses {
           license {
@@ -162,9 +129,4 @@ publishing {
 
 signing {
   sign(publishing.publications["mavenJava"])
-}
-
-tasks.wrapper {
-  gradleVersion = "7.1"
-  distributionType = Wrapper.DistributionType.ALL
 }
