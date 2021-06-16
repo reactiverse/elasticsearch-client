@@ -32,7 +32,7 @@ allprojects {
 
   extra["vertxVersion"] = "4.1.0"
   extra["elasticClientVersion"] = "7.10.1"
-  extra["mutinyBindingsVersion"] = "2.6.0"
+  extra["mutinyBindingsVersion"] = "2.7.0-SNAPSHOT"
   extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
   if (!project.hasProperty("ossrhUsername")) {
@@ -48,6 +48,7 @@ allprojects {
     maven {
       url = uri("https://oss.sonatype.org/content/repositories/snapshots")
     }
+    mavenLocal()
   }
 
   java {
