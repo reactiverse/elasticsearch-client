@@ -14,10 +14,12 @@ The generated shims ensure that asynchronous event processing respect the Vert.x
 
 The following modules can be used:
 
-* `elasticsearch-client`: a classic Vert.x API based on callbacks
+* `elasticsearch-client`: a classic Vert.x API based on callbacks and Vert.x 4.1.0
+* `elasticsearch-client-mutiny`: a [Mutiny](https://smallrye.io/smallrye-mutiny/) API of the client
 * `elasticsearch-client-rxjava2`: a RxJava 2 API of the client
+* `elasticsearch-client-rxjava3`: a RxJava 3 API of the client
 
-The Maven `groupId` is `io.reactiverse`. 
+The Maven `groupId` is `io.reactiverse`.
 
 ## Sample usage
 
@@ -30,7 +32,7 @@ client
   .rxIndexAsync(req, RequestOptions.DEFAULT)
   .flatMap(resp -> client.rxGetAsync(new GetRequest("posts", "_all", "1"), RequestOptions.DEFAULT))
   .subscribe(resp -> {
-    // Handle the response here    
+    // Handle the response here
   });
 ```
 
@@ -39,13 +41,13 @@ client
 Originally developped by [Julien Ponge](https://julien.ponge.org/).
 
     Copyright 2018 Red Hat, Inc.
-    
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-    
+
         http://www.apache.org/licenses/LICENSE-2.0
-    
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.

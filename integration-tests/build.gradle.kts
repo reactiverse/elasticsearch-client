@@ -19,19 +19,25 @@ plugins {
 }
 
 val vertxVersion = extra["vertxVersion"]
+val mutinyBindingsVersion = extra["mutinyBindingsVersion"]
+val assertjVersion = extra["assertjVersion"]
+val tcVersion = extra["tcVersion"]
+val junitVersion = extra["junitVersion"]
 
 dependencies {
   testImplementation(project(":elasticsearch-client-rxjava2"))
+  testImplementation(project(":elasticsearch-client-mutiny"))
 
   testImplementation("io.vertx:vertx-junit5:${vertxVersion}")
   testImplementation("io.vertx:vertx-junit5-rx-java2:${vertxVersion}")
+  testImplementation("io.smallrye.reactive:smallrye-mutiny-vertx-junit5:${mutinyBindingsVersion}")
 
-  testImplementation("org.assertj:assertj-core:3.19.0")
-  testImplementation("org.testcontainers:elasticsearch:1.15.3")
-  testImplementation("org.testcontainers:junit-jupiter:1.15.3")
+  testImplementation("org.assertj:assertj-core:${assertjVersion}")
+  testImplementation("org.testcontainers:elasticsearch:${tcVersion}")
+  testImplementation("org.testcontainers:junit-jupiter:${tcVersion}")
 
-  testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+  testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
 tasks.test {

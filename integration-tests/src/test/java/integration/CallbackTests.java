@@ -66,7 +66,7 @@ class CallbackTests {
   @Test
   void index(VertxTestContext testContext) {
     String yo = "{\"foo\": \"bar\"}";
-    IndexRequest req = new IndexRequest("posts", "_doc", "1").source(yo, XContentType.JSON);
+    IndexRequest req = new IndexRequest("posts").source(yo, XContentType.JSON);
     client.indexAsync(req, RequestOptions.DEFAULT, ar -> {
       if (ar.succeeded()) {
         IndexResponse response = ar.result();

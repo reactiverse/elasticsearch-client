@@ -20,10 +20,12 @@ val elasticSourcesDir = "$buildDir/elastic-sources/"
 val elasticShimsDir = "${buildDir}/elastic-shims"
 
 val elasticClientVersion = extra["elasticClientVersion"]
+val javaParserVersion = extra["javaParserVersion"]
+val logbackVersion = extra["logbackVersion"]
 
 dependencies {
-  implementation("ch.qos.logback:logback-classic:1.2.3")
-  implementation("com.github.javaparser:javaparser-core:3.9.1")
+  implementation("ch.qos.logback:logback-classic:${logbackVersion}")
+  implementation("com.github.javaparser:javaparser-core:${javaParserVersion}")
   elastic("org.elasticsearch.client:elasticsearch-rest-high-level-client:${elasticClientVersion}:sources")
 }
 
