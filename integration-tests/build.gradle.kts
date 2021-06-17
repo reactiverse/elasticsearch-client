@@ -19,12 +19,15 @@ plugins {
 }
 
 val vertxVersion = extra["vertxVersion"]
+val mutinyBindingsVersion = extra["mutinyBindingsVersion"]
 
 dependencies {
   testImplementation(project(":elasticsearch-client-rxjava2"))
+  testImplementation(project(":elasticsearch-client-mutiny"))
 
   testImplementation("io.vertx:vertx-junit5:${vertxVersion}")
   testImplementation("io.vertx:vertx-junit5-rx-java2:${vertxVersion}")
+  testImplementation("io.smallrye.reactive:smallrye-mutiny-vertx-junit5:${mutinyBindingsVersion}")
 
   testImplementation("org.assertj:assertj-core:3.19.0")
   testImplementation("org.testcontainers:elasticsearch:1.15.3")
