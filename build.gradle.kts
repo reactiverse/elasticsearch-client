@@ -32,7 +32,7 @@ allprojects {
 
   extra["vertxVersion"] = "4.1.0"
   extra["elasticClientVersion"] = "7.10.1"
-  extra["mutinyBindingsVersion"] = "2.7.0-SNAPSHOT"
+  extra["mutinyBindingsVersion"] = "2.7.0"
   extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
   if (!project.hasProperty("ossrhUsername")) {
