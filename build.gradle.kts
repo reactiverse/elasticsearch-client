@@ -93,6 +93,12 @@ tasks {
     delete.add("src/main/generated")
   }
 
+  getByName<Jar>("jar") {
+    manifest {
+      attributes(Pair("Automatic-Module-Name", "io.reactiverse.elasticsearch.client"))
+    }
+  }
+
   create<Jar>("sourcesJar") {
     from(sourceSets.main.get().allJava)
     archiveClassifier.set("sources")

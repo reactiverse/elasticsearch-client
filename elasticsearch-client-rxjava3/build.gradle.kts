@@ -50,6 +50,9 @@ tasks {
 
   getByName<Jar>("jar") {
     exclude("io/vertx/elasticsearch/client/*.class")
+    manifest {
+      attributes(Pair("Automatic-Module-Name", "io.reactiverse.elasticsearch.client.rxjava3"))
+    }
   }
 
   create<Jar>("sourcesJar") {
