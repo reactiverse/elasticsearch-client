@@ -30,7 +30,7 @@ allprojects {
   version = "0.9.0-SNAPSHOT"
   group = "io.reactiverse"
 
-  extra["vertxVersion"] = "4.1.0"
+  extra["vertxVersion"] = "4.1.5"
   extra["elasticClientVersion"] = "7.10.1"
   extra["mutinyBindingsVersion"] = "2.7.0"
 
@@ -93,14 +93,20 @@ tasks {
     delete.add("src/main/generated")
   }
 
+  getByName<Jar>("jar") {
+    manifest {
+      attributes(Pair("Automatic-Module-Name", "io.reactiverse.elasticsearch.client"))
+    }
+  }
+
   create<Jar>("sourcesJar") {
     from(sourceSets.main.get().allJava)
-    classifier = "sources"
+    archiveClassifier.set("sources")
   }
 
   create<Jar>("javadocJar") {
     from(javadoc)
-    classifier = "javadoc"
+    archiveClassifier.set("javadoc")
   }
 
   javadoc {
@@ -173,6 +179,6 @@ signing {
 }
 
 tasks.wrapper {
-  gradleVersion = "7.1"
+  gradleVersion = "7.2"
   distributionType = Wrapper.DistributionType.ALL
 }

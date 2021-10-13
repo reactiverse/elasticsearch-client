@@ -41,7 +41,7 @@ sourceSets {
 
 tasks {
   getByName<JavaCompile>("compileJava") {
-    options.annotationProcessorGeneratedSourcesDirectory = File("$projectDir/src/main/generated")
+    options.generatedSourceOutputDirectory.set(File("$projectDir/src/main/generated"))
   }
 
   getByName<Delete>("clean") {
@@ -50,16 +50,19 @@ tasks {
 
   getByName<Jar>("jar") {
     exclude("io/vertx/elasticsearch/client/*.class")
+    manifest {
+      attributes(Pair("Automatic-Module-Name", "io.reactiverse.elasticsearch.client.rxjava2"))
+    }
   }
 
   create<Jar>("sourcesJar") {
     from(sourceSets.main.get().allJava)
-    classifier = "sources"
+    archiveClassifier.set("sources")
   }
 
   create<Jar>("javadocJar") {
     from(javadoc)
-    classifier = "javadoc"
+    archiveClassifier.set("javadoc")
   }
 
   javadoc {
