@@ -41,7 +41,7 @@ sourceSets {
 
 tasks {
   getByName<JavaCompile>("compileJava") {
-    options.annotationProcessorGeneratedSourcesDirectory = File("$projectDir/src/main/generated")
+    options.generatedSourceOutputDirectory.set(File("$projectDir/src/main/generated"))
   }
 
   getByName<Delete>("clean") {
@@ -54,12 +54,12 @@ tasks {
 
   create<Jar>("sourcesJar") {
     from(sourceSets.main.get().allJava)
-    classifier = "sources"
+    archiveClassifier.set("sources")
   }
 
   create<Jar>("javadocJar") {
     from(javadoc)
-    classifier = "javadoc"
+    archiveClassifier.set("javadoc")
   }
 
   javadoc {

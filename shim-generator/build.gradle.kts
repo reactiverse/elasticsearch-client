@@ -38,7 +38,7 @@ tasks {
   }
 
   create<JavaExec>("elastic-process") {
-    main = "shimgen.Analyze"
+    mainClass.set("shimgen.Analyze")
     classpath = sourceSets["main"].runtimeClasspath
     args = listOf(
       "$elasticSourcesDir/org/elasticsearch/client/RestHighLevelClient.java",
