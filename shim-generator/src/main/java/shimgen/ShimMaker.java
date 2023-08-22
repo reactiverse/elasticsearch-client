@@ -63,6 +63,21 @@ class ShimMaker extends VoidVisitorAdapter<Void> {
   public void visit(ClassOrInterfaceDeclaration n, Void arg) {
     if (n.getNameAsString().equals("RestHighLevelClient")) {
       super.visit(n, arg);
+
+      shimInterface
+        .addMethod("getDelegate")
+        .setType("org.elasticsearch.client.RestHighLevelClient")
+        .removeBody();
+
+      BlockStmt createBlock = new BlockStmt();
+      shimImplementation
+        .addMethod("getDelegate")
+        .setPublic(true)
+        .setType("org.elasticsearch.client.RestHighLevelClient")
+        .setBody(createBlock);
+      String implCreation = "return delegate;";
+      createBlock.addStatement(JavaParser.parseStatement(implCreation));
+
       return;
     }
     logger.info("Client class {}, generating a constructor", n.getNameAsString());
